@@ -6,9 +6,8 @@ import android.util.Log
 import com.demo.kmm.Greeting
 import android.widget.TextView
 import com.demo.kmm.ApiRequest
-import com.demo.kmm.model.CatFact
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.runBlocking
+import com.demo.kmm.AppSocket
+import kotlinx.coroutines.*
 
 fun greet(): String {
     return Greeting().greeting()
@@ -25,22 +24,30 @@ class MainActivity : AppCompatActivity() {
 
         val apiRequest = ApiRequest()
 
-        val mainScope = MainScope()
-
         runBlocking {
-
-            try {
-//                val res: CatFact = apiRequest.getCatFact()
-//                Log.d("@@@", res.fact)
-
-                apiRequest.getCatFact().also {
-                    Log.d("@@@", it.fact)
+            launch {
+                try {
+                    apiRequest.getCatFact().let {
+                        Log.d("@@@", it.fact)
+                        tv.text = it.fact
+                    }
+                } catch (e: Exception) {
+                    Log.d("@@@", e.message!!)
                 }
-            } catch (e: Exception) {
-                Log.d("@@@", e.message!!)
             }
         }
 
+        initSocket()
+    }
 
+    fun initSocket() {
+        val URL = "https://drawing-server-5464.herokuapp.com/"
+        AppSocket(URL).run {
+            connect()
+            stateListener = {
+//                send("Tmp")
+                Log.d("@@@", it.name)
+            }
+        }
     }
 }

@@ -39,6 +39,9 @@ kotlin {
                 // ktor
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+
+                implementation("org.json:json:20211205")
+
             }
         }
         val commonTest by getting {
@@ -50,6 +53,9 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+
+                implementation("com.squareup.okhttp3:okhttp:4.9.3")
+
             }
         }
         val androidTest by getting {
