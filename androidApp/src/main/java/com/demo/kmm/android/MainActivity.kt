@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import com.demo.kmm.Greeting
 import android.widget.TextView
-import com.demo.kmm.ApiRequest
+import com.demo.kmm.CatFactApi
+import com.demo.kmm.FeatureRepository
 import com.demo.kmm.model.CatFact
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun greet(): String {
@@ -23,26 +25,40 @@ class MainActivity : AppCompatActivity() {
         tv.text = greet()
 
 
-        val apiRequest = ApiRequest()
+        val apiRequest = CatFactApi()
 
         val mainScope = MainScope()
 
         runBlocking {
 
-            try {
-                val cachedCatFact = apiRequest.getFromCache()
-                Log.d("@@@ old", cachedCatFact.fact)
+            launch {
+                try {
+
+                    Log.d("@@@ ", "start request catfact")
+                    val cachedCatFact = apiRequest.getFromCache()
+                    Log.d("@@@ old", cachedCatFact.fact)
+
+                    val catFact: CatFact = apiRequest.getCatFact()
+                    Log.d("@@@", catFact.fact)
+                    apiRequest.saveToCache(catFact)
+                } catch (e: Exception) {
+                    Log.d("@@@", e.message!!)
+                }
+            }
 
 
+            launch {
+                try {
+                    Log.d("@@@ ", "start request features")
+                    val featureRepo = FeatureRepository()
+                    val res = featureRepo.getAllFeatures()
+                    Log.d("@@@ features: ", res.items.toString())
 
-                val catFact: CatFact = apiRequest.getCatFact()
-                Log.d("@@@", catFact.fact)
-                apiRequest.saveToCache(catFact)
-            } catch (e: Exception) {
-                Log.d("@@@", e.message!!)
+                } catch (e: Exception) {
+                    Log.d("@@@", e.message!!)
+                }
             }
         }
-
 
     }
 }

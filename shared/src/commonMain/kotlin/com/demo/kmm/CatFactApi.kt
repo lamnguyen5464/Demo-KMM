@@ -8,11 +8,10 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import io.realm.RealmResults
 import io.realm.query
 import kotlinx.serialization.json.Json
 
-class ApiRequest {
+class CatFactApi {
     companion object {
         private const val URL = "https://catfact.ninja/fact"
     }
@@ -44,6 +43,6 @@ class ApiRequest {
 
     fun getFromCache(): CatFactEntity {
         val config = RealmConfiguration.with(schema = setOf(CatFactEntity::class))
-        return Realm.open(config).query<CatFactEntity>().find()[0]
+        return Realm.open(config).query<CatFactEntity>().find().last()
     }
 }

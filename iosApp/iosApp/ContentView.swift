@@ -18,7 +18,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 func testDemo() {
-    let apiRequest = ApiRequest()
+    let apiRequest = CatFactApi()
     
     print(apiRequest.getFromCache().fact)
     
