@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     kotlin("plugin.serialization")
     id("com.android.library")
+    id("io.realm.kotlin") version "0.9.0"
 }
 
 version = "1.0"
@@ -29,6 +30,7 @@ kotlin {
     }
 
     val ktorVersion = "1.6.1"
+    val realmVersion = "0.9.0"
     
     sourceSets {
         val commonMain by getting {
@@ -39,6 +41,8 @@ kotlin {
                 // ktor
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+
+                implementation("io.realm.kotlin:library-base:$realmVersion")
             }
         }
         val commonTest by getting {
@@ -74,4 +78,14 @@ android {
         minSdkVersion(16)
         targetSdkVersion(31)
     }
+
+//    buildFeatures {
+//        compose = true
+//    }
+//
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.0.3"
+//        kotlinCompilerVersion = "1.5.30"
+//
+//    }
 }

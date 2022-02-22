@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class CatFact (
+data class CatFact(
     @SerialName("fact")
     val fact: String,
     @SerialName("length")

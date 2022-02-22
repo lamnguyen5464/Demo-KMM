@@ -20,6 +20,8 @@ struct ContentView_Previews: PreviewProvider {
 func testDemo() {
     let apiRequest = ApiRequest()
     
+    print(apiRequest.getFromCache().fact)
+    
     apiRequest.getCatFact(completionHandler: { res, err in
         print(res?.fact)
     })

@@ -30,12 +30,14 @@ class MainActivity : AppCompatActivity() {
         runBlocking {
 
             try {
-//                val res: CatFact = apiRequest.getCatFact()
-//                Log.d("@@@", res.fact)
+                val cachedCatFact = apiRequest.getFromCache()
+                Log.d("@@@ old", cachedCatFact.fact)
 
-                apiRequest.getCatFact().also {
-                    Log.d("@@@", it.fact)
-                }
+
+
+                val catFact: CatFact = apiRequest.getCatFact()
+                Log.d("@@@", catFact.fact)
+                apiRequest.saveToCache(catFact)
             } catch (e: Exception) {
                 Log.d("@@@", e.message!!)
             }
