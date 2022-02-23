@@ -5,8 +5,7 @@ import android.util.Log
 import com.facebook.react.ReactActivity
 import com.demo.kmmshared.Greeting
 import com.demo.kmmshared.core.feature.FeatureRepository
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class MainActivity : ReactActivity() {
     /**
@@ -22,7 +21,9 @@ class MainActivity : ReactActivity() {
         val greeting = Greeting()
         Log.d("@@@", greeting.greeting())
 
-        runBlocking {
+
+         val mainScope = MainScope()
+        mainScope.launch{
 
             launch {
                 try {
@@ -35,7 +36,7 @@ class MainActivity : ReactActivity() {
                     Log.d("@@@", e.message!!)
                 }
             }
-            Log.d("@@@", "Async log here")
         }
+        Log.d("@@@", "Async log here")
     }
 }
