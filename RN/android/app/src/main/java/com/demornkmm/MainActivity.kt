@@ -22,8 +22,7 @@ class MainActivity : ReactActivity() {
         Log.d("@@@", greeting.greeting())
 
 
-         val mainScope = MainScope()
-        mainScope.launch{
+        GlobalScope.launch(Dispatchers.IO) {
 
             launch {
                 try {
@@ -38,5 +37,6 @@ class MainActivity : ReactActivity() {
             }
         }
         Log.d("@@@", "Async log here")
+
     }
 }

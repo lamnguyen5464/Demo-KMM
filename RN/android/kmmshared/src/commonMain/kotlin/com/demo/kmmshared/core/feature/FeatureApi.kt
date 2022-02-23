@@ -1,5 +1,6 @@
 package com.demo.kmmshared.core.feature
 
+import com.demo.kmmshared.core.crypto.EncryptAES
 import com.demo.kmmshared.model.FeatureResponse
 import io.ktor.client.*
 import io.ktor.client.features.json.JsonFeature
@@ -25,6 +26,10 @@ class FeatureApi {
     }
 
     suspend fun getAllFeatures(): FeatureResponse {
+        val encrypt =  EncryptAES()
+
+        val res = encrypt.encryptDecrypt("test string", "test key", "")
+        println("@@ $res")
         return httpClient.get(URL_GET_FEATURES)
     }
 }
