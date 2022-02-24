@@ -79,6 +79,13 @@ android {
         targetSdkVersion(31)
     }
 
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
 //    buildFeatures {
 //        compose = true
 //    }

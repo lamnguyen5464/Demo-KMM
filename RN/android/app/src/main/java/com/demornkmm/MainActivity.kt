@@ -3,8 +3,7 @@ package com.demornkmm
 import android.os.Bundle
 import android.util.Log
 import com.facebook.react.ReactActivity
-import com.demo.kmmshared.Greeting
-import com.demo.kmmshared.core.feature.FeatureRepository
+import com.demo.kmmshared.biz.feature.FeatureRepository
 import kotlinx.coroutines.*
 
 class MainActivity : ReactActivity() {
@@ -18,9 +17,6 @@ class MainActivity : ReactActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val greeting = Greeting()
-        Log.d("@@@", greeting.greeting())
-
 
         GlobalScope.launch(Dispatchers.IO) {
 
