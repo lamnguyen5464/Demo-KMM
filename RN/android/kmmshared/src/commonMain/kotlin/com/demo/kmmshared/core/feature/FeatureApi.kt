@@ -33,11 +33,14 @@ class FeatureApi {
             timeout = 30000L
             retry = 1
             body = _body
-        }.build().request()
+        }.appendHeader("Authorization", "lam.nguyen5").build().request()
     }
 
     suspend fun getAllFeatures(): FeatureResponse? {
-        val res = this.sendMessage(_path = GET_ALL_FEATURES_PATH, _body = FeatureRequest(environment = "staging"))
+        val res = this.sendMessage(
+            _path = GET_ALL_FEATURES_PATH,
+            _body = FeatureRequest(environment = "staging")
+        )
         return res?.receive()
     }
 }
