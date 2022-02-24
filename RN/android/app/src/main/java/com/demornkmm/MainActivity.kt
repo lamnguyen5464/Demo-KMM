@@ -5,6 +5,7 @@ import android.util.Log
 import com.facebook.react.ReactActivity
 import com.demo.kmmshared.Greeting
 import com.demo.kmmshared.core.feature.FeatureRepository
+import com.demo.kmmshared.core.storage.StorageManager
 import kotlinx.coroutines.*
 
 class MainActivity : ReactActivity() {
@@ -33,6 +34,17 @@ class MainActivity : ReactActivity() {
 
                 } catch (e: Exception) {
                     Log.d("@@@ error", e.message!!)
+                }
+            }
+
+            launch {
+                try {
+
+                    val store = StorageManager()
+                    println("@@ get from storage: " + store.getString("tmp"))
+                    store.saveString("temp", "value to save")
+                } catch (e: Exception) {
+                    Log.d("@@@ error storage", e.message!!)
                 }
             }
         }

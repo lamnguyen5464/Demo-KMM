@@ -41,6 +41,7 @@ class FeatureApi {
             _path = GET_ALL_FEATURES_PATH,
             _body = FeatureRequest(environment = "staging")
         )
+
         return res?.receive()
     }
 }
