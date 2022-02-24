@@ -29,10 +29,10 @@ class MainActivity : ReactActivity() {
                     Log.d("@@@ ", "start request features")
                     val featureRepo = FeatureRepository()
                     val res = featureRepo.getAllFeatures()
-                    Log.d("@@@ features: ", res.items.toString())
+                    Log.d("@@@ features: ", res?.items.toString())
 
                 } catch (e: Exception) {
-                    Log.d("@@@", e.message!!)
+                    Log.d("@@@ error", e.message!!)
                 }
             }
         }

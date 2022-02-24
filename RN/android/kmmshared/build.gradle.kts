@@ -26,7 +26,7 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         frameworkName = "kmmshared"
-        podfile = project.file("../iosApp/Podfile")
+        podfile = project.file("../../ios/Podfile")
     }
 
     val ktorVersion = "1.6.1"
