@@ -3,8 +3,8 @@ package com.demornkmm
 import android.os.Bundle
 import android.util.Log
 import com.demo.kmmshared.biz.feature.FeatureRepository
-import com.facebook.react.ReactActivity
 import com.demo.kmmshared.core.storage.StorageManager
+import com.facebook.react.ReactActivity
 import kotlinx.coroutines.*
 
 class MainActivity : ReactActivity() {
@@ -34,17 +34,18 @@ class MainActivity : ReactActivity() {
             }
 
             launch {
-                try {
 
-                    val store = StorageManager()
-                    println("@@ get from storage: " + store.getString("tmp"))
-                    store.saveString("temp", "value to save")
-                } catch (e: Exception) {
-                    Log.d("@@@ error storage", e.message!!)
-                }
             }
         }
         Log.d("@@@", "Async log here")
+        try {
+
+            val store = StorageManager(this)
+            println("@@ get from storage: " + store.getString("tmp"))
+            store.saveString("tmp", "value to save")
+        } catch (e: Exception) {
+            Log.d("@@@ error storage", e.message!!)
+        }
 
     }
 }

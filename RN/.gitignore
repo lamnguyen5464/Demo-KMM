@@ -61,5 +61,5 @@ buck-out/
 ios/Podfile.lock
 
 # KMM
-kmmshared
+/kmmshared
 
