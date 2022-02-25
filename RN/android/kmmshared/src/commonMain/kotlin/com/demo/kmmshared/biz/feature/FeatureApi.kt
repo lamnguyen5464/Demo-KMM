@@ -3,10 +3,10 @@ package com.demo.kmmshared.biz.feature
 import com.demo.kmmshared.core.http.MHttpRequest
 import com.demo.kmmshared.biz.feature.model.FeatureRequest
 import com.demo.kmmshared.biz.feature.model.FeatureResponse
-import com.demo.kmmshared.core.http.HttpExecutor
 import com.demo.kmmshared.core.http.MHttpResponse
+import com.demo.kmmshared.core.http.message.HttpBaseMessage
+import com.demo.kmmshared.core.http.message.HttpMessage
 import io.ktor.client.call.*
-import io.ktor.client.statement.*
 import io.ktor.http.*
 
 class FeatureApi {
@@ -28,15 +28,14 @@ class FeatureApi {
         _path: String,
         _method: HttpMethod = HttpMethod.Get,
         _body: Any? = null
-    ): MHttpResponse? {
-        val httpExecutor = HttpExecutor()
-        return httpExecutor.execute(
-            MHttpRequest.Builder(url = BASE_URL + _path, method = _method).apply {
+    ): MHttpResponse {
+        val httpExecutor = HttpMessage()
+        httpExecutor.request =MHttpRequest.Builder(url = BASE_URL + _path, method = _method).apply {
                 timeout = 30000L
                 retry = 1
                 body = _body
             }.appendHeader("Authorization", "lam.nguyen5").build()
-        )
+        return httpExecutor.send()
     }
 
     suspend fun getAllFeatures(): FeatureResponse? {

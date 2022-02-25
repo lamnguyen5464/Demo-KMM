@@ -1,7 +1,10 @@
 package com.demo.kmmshared.core.http.interceptor
 
+import com.demo.kmmshared.core.http.message.HttpBaseMessage
+import com.demo.kmmshared.core.http.message.HttpMessage
+
 
 interface HttpInterceptor {
-    fun onWillSendRequest()
-    fun onDidRecieveResponse()
+    fun onWillSendRequest(httpMessage: HttpBaseMessage)
+    fun onDidReceiveResponse(httpMessage: HttpMessage)
 }

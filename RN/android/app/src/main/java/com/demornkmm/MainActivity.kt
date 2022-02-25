@@ -19,6 +19,7 @@ class MainActivity : ReactActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         GlobalScope.launch(Dispatchers.IO) {
 
             launch {
