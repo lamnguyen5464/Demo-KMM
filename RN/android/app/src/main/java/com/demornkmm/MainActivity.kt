@@ -34,7 +34,15 @@ class MainActivity : ReactActivity() {
             }
 
             launch {
+                try {
+                    Log.d("@@@ ", "start request features")
+                    val featureRepo = FeatureRepository()
+                    val res = featureRepo.getAllFeatures()
+                    Log.d("@@@ features: ", res?.items.toString())
 
+                } catch (e: Exception) {
+                    Log.d("@@@ error", e.message!!)
+                }
             }
         }
         Log.d("@@@", "Async log here")
