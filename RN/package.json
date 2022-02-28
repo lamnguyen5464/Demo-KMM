@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "all": "bash init.sh",
     "test": "jest",
     "lint": "eslint .",
     "adb": "adb reverse tcp:8081 tcp:8081"
