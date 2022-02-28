@@ -8,6 +8,6 @@ class HttpLogger: HttpInterceptor {
         println("@@ call from HttpLogger before send")
     }
 
-    override fun onDidReceiveResponse(httpMessage: HttpMessage) {
+    override fun onDidReceiveResponse(httpMessage: HttpBaseMessage) {
     }
 }

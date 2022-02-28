@@ -8,6 +8,6 @@ class HttpAuthHeader: HttpInterceptor {
         println("@@ call from HttpAuthHeader before send")
     }
 
-    override fun onDidReceiveResponse(httpMessage: HttpMessage) {
+    override fun onDidReceiveResponse(httpMessage: HttpBaseMessage) {
     }
 }

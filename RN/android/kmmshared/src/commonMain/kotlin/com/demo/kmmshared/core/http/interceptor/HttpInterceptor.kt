@@ -6,5 +6,5 @@ import com.demo.kmmshared.core.http.message.HttpMessage
 
 interface HttpInterceptor {
     fun onWillSendRequest(httpMessage: HttpBaseMessage)
-    fun onDidReceiveResponse(httpMessage: HttpMessage)
+    fun onDidReceiveResponse(httpMessage: HttpBaseMessage)
 }

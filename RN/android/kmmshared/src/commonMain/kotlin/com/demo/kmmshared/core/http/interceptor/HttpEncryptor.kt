@@ -8,6 +8,6 @@ class HttpEncryptor: HttpInterceptor {
         println("@@ call from HttpEncryptor before send")
     }
 
-    override fun onDidReceiveResponse(httpMessage: HttpMessage) {
+    override fun onDidReceiveResponse(httpMessage: HttpBaseMessage) {
     }
 }

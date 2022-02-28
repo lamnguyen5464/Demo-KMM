@@ -21,30 +21,22 @@ class MainActivity : ReactActivity() {
 
 
         GlobalScope.launch(Dispatchers.IO) {
+            repeat(2) {
 
-            launch {
-                try {
-                    Log.d("@@@ ", "start request features")
-                    val featureRepo = FeatureRepository()
-                    val res = featureRepo.getAllFeatures()
-                    Log.d("@@@ features: ", res?.items.toString())
 
-                } catch (e: Exception) {
-                    Log.d("@@@ error", e.message!!)
+                launch {
+                    try {
+                        Log.d("@@@ ", "start request features")
+                        val featureRepo = FeatureRepository()
+                        val res = featureRepo.getAllFeatures()
+                        Log.d("@@@ features: ", res?.items.toString())
+
+                    } catch (e: Exception) {
+                        Log.d("@@@ error", e.message!!)
+                    }
                 }
             }
 
-            launch {
-                try {
-                    Log.d("@@@ ", "start request features")
-                    val featureRepo = FeatureRepository()
-                    val res = featureRepo.getAllFeatures()
-                    Log.d("@@@ features: ", res?.items.toString())
-
-                } catch (e: Exception) {
-                    Log.d("@@@ error", e.message!!)
-                }
-            }
         }
         Log.d("@@@", "Async log here")
         try {

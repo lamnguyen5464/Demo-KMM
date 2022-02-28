@@ -14,7 +14,7 @@ class HttpMessage() : HttpBaseMessage() {
                 override fun onWillSendRequest(httpMessage: HttpBaseMessage) {
                 }
 
-                override fun onDidReceiveResponse(httpMessage: HttpMessage) {}
+                override fun onDidReceiveResponse(httpMessage: HttpBaseMessage) {}
             })
     }
 }
