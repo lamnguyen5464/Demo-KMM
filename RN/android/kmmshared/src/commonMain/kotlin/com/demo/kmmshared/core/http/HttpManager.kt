@@ -8,22 +8,30 @@ import io.ktor.client.request.*
 
 class HttpManager {
     companion object {
-        private val httpClient: HttpClient = HttpClient {
-            install(JsonFeature) {
-                val json = kotlinx.serialization.json.Json {
-                    ignoreUnknownKeys = true
-                    useAlternativeNames = false
-                }
-                serializer = KotlinxSerializer(json)
+        private var httpManagerInstance: HttpManager? = null
+        fun getInstance(): HttpManager {
+            if (httpManagerInstance == null) {
+                httpManagerInstance = HttpManager()
             }
-
-            install(HttpTimeout) {
-            }
+            return httpManagerInstance!!
         }
     }
 
+    private val httpClient: HttpClient = HttpClient {
+        install(JsonFeature) {
+            val json = kotlinx.serialization.json.Json {
+                ignoreUnknownKeys = true
+                useAlternativeNames = false
+            }
+            serializer = KotlinxSerializer(json)
+        }
 
-    suspend fun execute(request: MHttpRequest): MHttpResponse {
+        install(HttpTimeout) {}
+    }
+
+
+    suspend fun addRequest(request: MHttpRequest): MHttpResponse {
+        // TODO: impl message queue here
         return httpClient.request(request.getConfig())
     }
 }
