@@ -11,3 +11,4 @@
 local.properties
 /iosApp/Pods/
 /iosApp/Podfile.lock
+.DS_Store
